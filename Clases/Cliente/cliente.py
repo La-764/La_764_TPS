@@ -38,7 +38,7 @@ class Cliente:
         except:
             raise
         finally:
-            return self.__apellido
+            return "Apellido: " + str(self.__apellido)
 
     def get_telefono(self):
         return self.__telefono
@@ -54,7 +54,7 @@ class Cliente:
         except:
             raise
         finally:
-            return self.__telefono
+            return "Telefono: " + str(self.__telefono)
 
     def get_dni(self):
         return self.__dni
@@ -70,7 +70,7 @@ class Cliente:
         except:
             raise
         finally:
-            return self.__dni
+            return "DNI: " + str(self.__dni)
     
     def puede_tener_chequera(self):
         return False
