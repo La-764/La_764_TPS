@@ -10,8 +10,14 @@ class ClienteBlack(Cliente):
     def puede_tener_chequera(self):
         return True
 
+    def max_chequera(self):
+        return 2
+
     def puede_crear_tarjeta_credito(self):
         return True
+
+    def max_tarjeta_credito(self):
+        return 5
 
     def puede_comprar_dolar(self):
         return True
