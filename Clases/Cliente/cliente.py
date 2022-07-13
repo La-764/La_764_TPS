@@ -1,8 +1,10 @@
 from multiprocessing.sharedctypes import Value
+from .cliente import Cuenta
 
 
-class Cliente:
-    def __init__(self, nombre, apellido, telefono, dni):
+class Cliente(Cuenta):
+    def __init__(self, monto, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible, nombre, apellido, telefono, dni):
+        super().__init__(monto, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible)
         self.__nombre = nombre
         self.__apellido = apellido
         self.__telefono = telefono
