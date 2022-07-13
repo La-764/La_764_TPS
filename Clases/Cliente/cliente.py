@@ -22,7 +22,7 @@ class Cliente:
         except:
             raise
         finally:
-            return self.__nombre
+            return "Nombre: " + str(self.__nombre)
 
     def get_apellido(self):
         return self.__apellido
