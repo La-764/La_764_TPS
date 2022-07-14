@@ -1,5 +1,4 @@
 from re import sub
-from .cliente import Cuenta
 from .cliente import Cliente
 
 class ClienteGold(Cliente):

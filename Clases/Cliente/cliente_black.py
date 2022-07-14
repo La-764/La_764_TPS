@@ -1,5 +1,4 @@
 from json.encoder import INFINITY
-from .cliente import Cuenta
 from .cliente import Cliente
 
 class ClienteBlack(Cliente):

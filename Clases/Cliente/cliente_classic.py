@@ -1,4 +1,3 @@
-from .cliente import Cuenta
 from .cliente import Cliente
 
 class ClienteClassic(Cliente):
