@@ -3,7 +3,7 @@ from .cliente import Cliente
 
 class ClienteGold(Cliente):
     def __init__(self, saldo, nombre, apellido, telefono, dni):
-        super().__init__(saldo, 20000, 500000, 0.5, 10000, nombre, apellido, telefono, dni)
+        super().__init__(saldo, 20000, 500000, 0.005, 10000, nombre, apellido, telefono, dni)
 
     def tiene_cuenta_dolares(self):
         return True

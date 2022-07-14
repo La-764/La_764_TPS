@@ -17,8 +17,6 @@ class Cliente:
 
         self.__direccion = Direccion()
 
-        self.__tarjeta_credito = 0
-
     def get_nombre(self):
         return self.__nombre
 
@@ -189,22 +187,20 @@ class Cliente:
     def max_tarjeta_credito(self):
         return 0
 
-    def puede_retirar_x_monto(self, retiro):
-        return retiro <= self.__limite_extraccion_diario and retiro <= (self.__saldo + self.__saldo_descubierto_disponible)
+    def puede_retirar_x_monto(self, monto):
+        return monto <= self.__limite_extraccion_diario and monto <= (self.__saldo + self.__saldo_descubierto_disponible)
+        #reemplazar limite_extraccion diario con el cupo disponible del json
 
+    def puede_crear_chequera(self):
+        pass
+        #return [totalChequerasActualmente] <= self.max_chequera
+    
     def puede_crear_credito(self):
-        return self.__tarjeta_credito <= self.max_tarjeta_credito
-'''
-RETIRO_EFECTIVO_CAJERO_AUTOMATICO: Tener presente que si tiene
-cuenta corriente puede figurar el valor de saldo en cuenta como negativo
-hasta el importe del cupo establecido
-  ALTA_TARJETA_CREDITO: Se solicito una nueva tarjeta de crédito
-  ALTA_CHEQUERA: Se solicito una nueva chequera
-  COMPRAR_DOLAR: Se solicito realizar la transacción para comprar
-dólares, pero solo lo pueden hacer los clientes que tengan cuenta en
-dólares.
-  TRANSFERENCIA_ENVIADA: Solo se puede en pesos y lo que tenga en caja
-de ahorro y cuenta corriente debe poder pagar la comisión que se cobra.
-  TRANSFERENCIA_RECIBIDA: Sólo en pesos y tener presente que va a estar
-rechaza si no estuvo autorizada.
-'''
+        pass
+        #return [totalTarjetasDeCreditoActualmente] <= self.max_tarjeta_credito
+
+    def puede_enviar_x_monto(self, monto):
+        return monto <= (self.__saldo + self.__saldo * self.__costo_transferencias)
+
+    def puede_recibir_x_monto_sin_aut(self, monto):
+        return monto <= self.__limite_transferencia_recibida
