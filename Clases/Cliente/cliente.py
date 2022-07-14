@@ -1,16 +1,23 @@
 from multiprocessing.sharedctypes import Value
+from direccion import Direccion
 
 class Cliente:
-    def __init__(self, monto, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible, nombre, apellido, telefono, dni):
-        self.__nombre = nombre
-        self.__apellido = apellido
-        self.__telefono = telefono
-        self.__dni = dni
-        self.__monto = monto
+    def __init__(self, saldo, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible, nombre, apellido, telefono, dni) -> None:
+        self.__saldo = saldo
+
         self.__limite_extraccion_diario = limite_extraccion_diario
         self.__limite_transferencia_recibida = limite_transferencia_recibida
         self.__costo_transferencias = costo_transferencias
         self.__saldo_descubierto_disponible = saldo_descubierto_disponible
+
+        self.__nombre = nombre
+        self.__apellido = apellido
+        self.__telefono = telefono
+        self.__dni = dni
+
+        self.__direccion = Direccion()
+
+        self.__tarjeta_credito = 0
 
     def get_nombre(self):
         return self.__nombre
@@ -76,21 +83,21 @@ class Cliente:
         finally:
             return "DNI: " + str(self.__dni)
 
-    def get_monto(self):
+    def get_saldo(self):
         return self.__monto
 
-    def set_monto(self, monto):
+    def set_saldo(self, saldo):
         try:
-            floatMonto = float(monto)
-            self.__monto = floatMonto
+            floatSaldo = float(saldo)
+            self.__saldo = floatSaldo
         except ValueError:
-            raise ValueError("El monto debe ser un numero o poder ser convertido en un numero")
+            raise ValueError("El saldo debe ser un numero o poder ser convertido en un numero")
         except TypeError:
-            raise TypeError("El monto debe ser un numero o poder ser convertido en un numero")
+            raise TypeError("El saldo debe ser un numero o poder ser convertido en un numero")
         except:
             raise
         finally:
-            return "Monto: " + str(self.__monto)
+            return "Saldo: " + str(self.__saldo)
 
     def get_limite_extraccion_diario(self):
         return self.__limite_extraccion_diario
@@ -146,7 +153,7 @@ class Cliente:
     def set_saldo_descubierto_disponible(self, saldo_descubierto_disponible):
         try:
             floatSaldoDescubiertoDisponible = float(saldo_descubierto_disponible)
-            self.__monto = floatSaldoDescubiertoDisponible
+            self.__saldo_descubierto_disponible = floatSaldoDescubiertoDisponible
         except ValueError:
             raise ValueError("El saldo descubierto disponible debe ser un numero o poder ser convertido en un numero")
         except TypeError:
@@ -156,10 +163,18 @@ class Cliente:
         finally:
             return "Saldo descubierto disponible: " + str(self.__saldo_descubierto_disponible)
 
-    def tiene_cuenta_pesos():
-        return True
+    @property
+    def direccion(self):
+        return self.__direccion
+    
+    @direccion.setter
+    def set_direccion(self, direccion):
+        self.__direccion = direccion
+    
+    def tiene_cuenta_dolares(self):
+        return False
 
-    def tiene_cuenta_dolares():
+    def tiene_cuenta_corriente(self):
         return False
 
     def puede_tener_chequera(self):
@@ -173,8 +188,14 @@ class Cliente:
 
     def max_tarjeta_credito(self):
         return 0
+
+    def puede_retirar_x_monto(self, retiro):
+        return retiro <= self.__limite_extraccion_diario and retiro <= (self.__saldo + self.__saldo_descubierto_disponible)
+
+    def puede_crear_credito(self):
+        return self.__tarjeta_credito <= self.max_tarjeta_credito
 '''
-    RETIRO_EFECTIVO_CAJERO_AUTOMATICO: Tener presente que si tiene
+RETIRO_EFECTIVO_CAJERO_AUTOMATICO: Tener presente que si tiene
 cuenta corriente puede figurar el valor de saldo en cuenta como negativo
 hasta el importe del cupo establecido
   ALTA_TARJETA_CREDITO: Se solicito una nueva tarjeta de crédito
