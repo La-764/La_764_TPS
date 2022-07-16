@@ -1,9 +1,10 @@
 from re import sub
 from .cliente import Cliente
+from .cuenta import CuentaDet
 
 class ClienteGold(Cliente):
-    def __init__(self, saldo, nombre, apellido, telefono, dni):
-        super().__init__(saldo, 20000, 500000, 0.5, 10000, nombre, apellido, telefono, dni)
+    #def __init__(self, saldo, nombre, apellido, telefono, dni):
+        #super().__init__(saldo, 20000, 500000, 0.5, 10000, nombre, apellido, telefono, dni)
 
     def tiene_cuenta_dolares(self):
         return True
@@ -25,3 +26,12 @@ class ClienteGold(Cliente):
 
     def max_tarjeta_credito(self):
         return 1
+
+    def cuenta_ahorro_pesos(self,monto):
+        caja_ahorro_pesos = CuentaDet(20000,500000,monto,0.005*monto,0)
+        return caja_ahorro_pesos
+    
+    def cuenta_corriente(self,monto):
+        cuenta_corriente = CuentaDet(20000,500000,monto,0.005*monto,10000)
+        return cuenta_corriente
+    

@@ -4,6 +4,7 @@ from event_validation import *
 from razon_de_rechazo import Razon
 from transacciones import TransaccionesDet
 
+
 class razon_compra_dolar(Razon):
     def resolver(self):
         if self.cliente.puede_comprar_dolar() == False:
@@ -45,6 +46,28 @@ class razon_transferencia_recibida(Razon):
         if (self.evento.tipo.lower() == 'classic' or self.evento.tipo.lower() == 'gold'):
             if self.transaccion.monto > self.caja_ahorro_pesos.limite_transferencia_recibida:
                 if self.evento.tipo.lower() == 'classic':
-                    return f'La transferencia a recibir supera los ${self.caja_ahorro_pesos.limite_transferencia_recibida} que es tu limite de extracción a recibir'
+                    return f'La transferencia a recibir supera los ${self.caja_ahorro_pesos.limite_transferencia_recibida} que es tu limite de extracción a recibir dispuesto para su tipo de cuenta'
                 else:
                     return f'Las transferencias a recibir que supera los ${self.caja_ahorro_pesos.limite_transferencia_recibida} deben ser autorizadas previamente'
+
+class razon_transferencia_enviada(Razon):
+    def resolver(self):      
+        costo_trans= self.caja_ahorro_pesos.monto + self.caja_ahorro_pesos.costo_transferencias
+
+        if self.cuenta_corriente == None:
+            if costo_trans < self.caja_ahorro_pesos.limite_extraccion_diario:
+                if self.transaccion.saldoEnCuenta > costo_trans:
+                    pass
+                else:
+                    return 'Estás intentando transferir más plata de lo disponible actualmente'
+            else:
+                return f'La transferencia a realizar supera tu limite de extracción diario'
+        else: 
+            if costo_trans < self.caja_ahorro_pesos.limite_extraccion_diario:
+                if self.transaccion.saldoEnCuenta > costo_trans:
+                    pass
+                else:
+                    if (self.transaccion.saldoEnCuenta - costo_trans < -1*(self.cuenta_corriente.saldo_descubierto_disponible)):
+                        return f'El descubierto definido para su tipo de cuenta no puede cubrir la transferencia'
+            else:
+                return f'La transferencia superan los que es tu limite de extracción diario'
