@@ -20,7 +20,7 @@ def main():
                     print(razon_alta_tarjeta_credito(t,tps).resolver())
                 case 'alta_chequera':
                     print(razon_alta_chequera(t,tps).resolver())
-                case 'comprar_dolar':
+                case 'compra_dolar':
                     print(razon_compra_dolar(t,tps).resolver())
                 case'retiro_efectivo_cajero_automatico':
                     print(razon_retiro_efectivo(t,tps).resolver())

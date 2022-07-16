@@ -180,6 +180,9 @@ class Cliente:
     def tiene_cuenta_dolares(self):
         return False
 
+    def puede_comprar_dolar(self):
+        pass
+
     def tiene_cuenta_corriente(self):
         return False
 

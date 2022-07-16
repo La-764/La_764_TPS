@@ -8,6 +8,9 @@ class ClienteGold(Cliente):
     def tiene_cuenta_dolares(self):
         return True
 
+    def puede_comprar_dolar(self):
+        return True
+
     def tiene_cuenta_corriente(self):
         return True
     
