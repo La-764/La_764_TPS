@@ -1,6 +1,7 @@
 import jsonschema
+from jsonschema import ValidationError, validate
 import json
-
+from Clases import *
 schema = {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
@@ -115,13 +116,13 @@ schema = {
     ]
 }
 
-
-# de prueba:
-with open('test_event/eventos_black.json') as f:
-    try:
-        event = json.load(f)
-        jsonschema.validate(event, schema)
-    except jsonschema.exceptions.ValidationError as e:
-        print('Archivo JSON bien formateado pero no es válido:', e)
-    except json.decoder.JSONDecodeError as e:
-        print('Formato incorrecto, el archivo no es JSON:', e)
+def leerJSON(nombreJSON):
+    with open(nombreJSON) as f:
+        try:
+            event = json.load(f)
+            jsonschema.validate(event, schema)
+            return event
+        except ValidationError as e:
+            print('Archivo JSON bien formateado pero no es válido:', e)
+        except json.decoder.JSONDecodeError as e:
+            print('Formato incorrecto, el archivo no es JSON:', e)

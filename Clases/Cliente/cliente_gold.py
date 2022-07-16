@@ -2,8 +2,8 @@ from re import sub
 from .cliente import Cliente
 
 class ClienteGold(Cliente):
-    def __init__(self, saldo, nombre, apellido, telefono, dni):
-        super().__init__(saldo, 20000, 500000, 0.5, 10000, nombre, apellido, telefono, dni)
+    def __init__(self, saldo, nombre, apellido, telefono, dni, transacciones=[]):
+        super().__init__(saldo, 20000, 500000, 0.5, 10000, nombre, apellido, telefono, dni, transacciones)
 
     def tiene_cuenta_dolares(self):
         return True
