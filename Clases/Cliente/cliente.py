@@ -3,8 +3,8 @@ from multiprocessing.sharedctypes import Value
 
 class Cliente:
     def __init__(self, saldo, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible, nombre, apellido, telefono, dni, transacciones) -> None:
+       
         self.__saldo = saldo
-
         self.__limite_extraccion_diario = limite_extraccion_diario
         self.__limite_transferencia_recibida = limite_transferencia_recibida
         self.__costo_transferencias = costo_transferencias

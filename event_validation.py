@@ -2,6 +2,9 @@ import jsonschema
 from jsonschema import ValidationError, validate
 import json
 from Clases import *
+from transacciones import TransaccionesDet
+
+
 schema = {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "type": "object",
@@ -115,14 +118,25 @@ schema = {
         "transacciones"
     ]
 }
+class Evento:
+    def __init__(self):
+        pass
 
-def leerJSON(nombreJSON):
-    with open(nombreJSON) as f:
-        try:
-            event = json.load(f)
-            jsonschema.validate(event, schema)
-            return event
-        except ValidationError as e:
-            print('Archivo JSON bien formateado pero no es válido:', e)
-        except json.decoder.JSONDecodeError as e:
-            print('Formato incorrecto, el archivo no es JSON:', e)
+    def leerJSON(self,nombreJSON):
+        with open(nombreJSON) as f:
+            try:
+                event = json.load(f)
+                jsonschema.validate(event, schema)
+            except ValidationError as e:
+                print('Archivo JSON bien formateado pero no es válido:', e)
+            except json.decoder.JSONDecodeError as e:
+                print('Formato incorrecto, el archivo no es JSON:', e)
+        self.numero=event['numero']
+        self.nombre=event['nombre']
+        self.apellido=event['apellido']
+        self.dni=event['dni']
+        self.tipo=event['tipo']
+        self.transacciones=[]
+        for i in event['transacciones']:
+            transaccion=TransaccionesDet(i)
+            self.transacciones.append(transaccion)
