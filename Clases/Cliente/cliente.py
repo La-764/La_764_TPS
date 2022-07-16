@@ -174,6 +174,9 @@ class Cliente:
     def set_direccion(self, direccion):
         self.__direccion = direccion
     
+    def tiene_cuenta_pesos(self):
+        return True
+
     def tiene_cuenta_dolares(self):
         return False
 
