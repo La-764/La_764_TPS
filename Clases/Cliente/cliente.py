@@ -1,5 +1,6 @@
 from multiprocessing.sharedctypes import Value
-# from direccion import Direccion
+from direccion import DireccionDesc
+from transacciones import TransaccionesDet
 
 class Cliente:
     def __init__(self, saldo, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible, nombre, apellido, telefono, dni, transacciones) -> None:
@@ -14,8 +15,8 @@ class Cliente:
         self.__apellido = apellido
         self.__telefono = telefono
         self.__dni = dni
-        self.__transacciones = transacciones
-        # self.__direccion = Direccion()
+        self.__transacciones = TransaccionesDet()
+        self.__direccion = DireccionDesc()
 
         self.__tarjeta_credito = 0
 

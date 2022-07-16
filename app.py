@@ -24,7 +24,4 @@ def main():
                     print(razon_compra_dolar(t,tps).resolver())
                 case'retiro_efectivo_cajero_automatico':
                     print(razon_retiro_efectivo(t,tps).resolver())
-
-   
-   
 main()

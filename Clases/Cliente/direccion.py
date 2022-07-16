@@ -1,4 +1,4 @@
-class Direccion:
+class DireccionDesc:
 
     def __init__(self, calle, altura, ciudad, provincia, pais) -> None:
         self.__calle = calle
