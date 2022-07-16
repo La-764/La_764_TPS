@@ -13,17 +13,17 @@ def main():
         if t.estado == "RECHAZADA":
             match t.tipo.lower():
                 case 'transferencia_enviada':
-                    print(razon_transferencia_enviada(t,tps)) #en vez de print va return para mandar los datos a una variable
+                    print(razon_transferencia_enviada(t,tps).resolver()) #en vez de print va return para mandar los datos a una variable
                 case 'transferencia_recibida':
-                    print(RazonTransferenciaRecibida(t,tps).resolver())
+                    print(razon_transferencia_recibida(t,tps).resolver())
                 case 'alta_tarjeta_credito':
-                    print(RazonAltaTarjetaCredito(t,tps).resolver())
+                    print(razon_alta_tarjeta_credito(t,tps).resolver())
                 case 'alta_chequera':
-                    print(RazonAltaChequera(t,tps).resolver())
+                    print(razon_alta_chequera(t,tps).resolver())
                 case 'comprar_dolar':
-                    print(RazonCompraDolar(t,tps).resolver())
+                    print(razon_compra_dolar(t,tps).resolver())
                 case'retiro_efectivo_cajero_automatico':
-                    print(RazonRetiroEfectivo(t,tps).resolver())
+                    print(razon_retiro_efectivo(t,tps).resolver())
 
    
    
