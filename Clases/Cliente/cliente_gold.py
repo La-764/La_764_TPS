@@ -34,4 +34,9 @@ class ClienteGold(Cliente):
     def cuenta_corriente(self,monto):
         cuenta_corriente = CuentaDet(20000,500000,monto,0.005*monto,10000)
         return cuenta_corriente
+
+    def cuenta_ahorro_dolares(self,monto):
+        caja_ahorro_dolar = CuentaDet(2000,500000,monto,monto*0.005,0) 
+        return caja_ahorro_dolar
+
     

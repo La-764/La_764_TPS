@@ -1,24 +1,14 @@
 from multiprocessing.sharedctypes import Value
-from direccion import DireccionDesc
+from .direccion import DireccionDesc
 
 
 class Cliente:
-    def __init__(self, saldo, limite_extraccion_diario, limite_transferencia_recibida, costo_transferencias, saldo_descubierto_disponible, nombre, apellido, telefono, dni, direccion) -> None:
-       
-        self.__saldo = saldo
-        self.__limite_extraccion_diario = limite_extraccion_diario
-        self.__limite_transferencia_recibida = limite_transferencia_recibida
-        self.__costo_transferencias = costo_transferencias
-        self.__saldo_descubierto_disponible = saldo_descubierto_disponible
+    def __init__(self, cliente) -> None:
+        self.nombre=cliente.nombre
+        self.apellido=cliente.apellido
+        self.numero=cliente.numero
+        self.dni=cliente.dni
         
-        self.__nombre = nombre
-        self.__apellido = apellido
-        self.__telefono = telefono
-        self.__dni = dni
-        self.__direccion = DireccionDesc()
-
-        self.__tarjeta_credito = 0
-
     def get_nombre(self):
         return self.__nombre
 

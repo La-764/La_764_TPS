@@ -3,10 +3,15 @@ from Clases import *
 from funciones import *
 from transacciones import TransaccionesDet
 
+def concatPath(nombreJSON):
+    directory = 'test_event/'
+    nombreJSON = directory + nombreJSON
+    return nombreJSON
 def main():
     rechazo = []
     nombreJSON = input("Ingrese el nombre del archivo: ")
     tps = Evento()
+    nombreJSON=concatPath(nombreJSON)
     tps.leerJSON(nombreJSON)
     cliente= Cliente(tps)
     for t in tps.transacciones:
@@ -24,4 +29,5 @@ def main():
                     print(razon_compra_dolar(t,tps).resolver())
                 case'retiro_efectivo_cajero_automatico':
                     print(razon_retiro_efectivo(t,tps).resolver())
+    
 main()

@@ -11,17 +11,17 @@ class Razon:
     def tipo_cliente(self,evento,transaccion):
         lista_de_cuentas=[]
         if (evento.tipo.lower()=="classic"):
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_pesos(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_ahorro_pesos(transaccion.monto))
             lista_de_cuentas.append(None)
             lista_de_cuentas.append(None)
         if (evento.tipo.lower()=="gold"):
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_pesos(transaccion.monto))
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_dolares(transaccion.monto))
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_corriente(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_ahorro_pesos(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_ahorro_dolares(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_corriente(transaccion.monto))
         if(evento.tipo.lower()=="black"):
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_pesos(transaccion.monto))
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_dolares(transaccion.monto))
-            lista_de_cuentas.append(self.cliente.tiene_cuenta_corriente(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_ahorro_pesos(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_ahorro_dolares(transaccion.monto))
+            lista_de_cuentas.append(self.cliente.cuenta_corriente(transaccion.monto))
         
         return lista_de_cuentas
     

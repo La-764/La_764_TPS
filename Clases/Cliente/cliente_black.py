@@ -29,11 +29,16 @@ class ClienteBlack(Cliente):
         return 5
     
     def cuenta_ahorro_pesos(self,monto):
-        caja_ahorro_pesos = CuentaDet(100000,None,500000,monto,0,0)
+        caja_ahorro_pesos = CuentaDet(100000,None,monto,0,10000)
         return caja_ahorro_pesos
     
     def cuenta_corriente(self,monto):
         cuenta_corriente = CuentaDet(100000,None,monto,0,10000)
         return cuenta_corriente
+        
+    def cuenta_ahorro_dolares(self,monto):
+        caja_ahorro_dolar = CuentaDet(2000,None,monto,0,0)  
+        return caja_ahorro_dolar
+
 
     

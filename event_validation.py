@@ -136,6 +136,7 @@ class Evento:
         self.apellido=event['apellido']
         self.dni=event['dni']
         self.tipo=event['tipo']
+        self.direccion = DireccionDesc(event['direccion'])
         self.transacciones=[]
         for i in event['transacciones']:
             transaccion=TransaccionesDet(i)

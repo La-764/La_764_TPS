@@ -15,5 +15,4 @@ class ClienteClassic(Cliente):
     def cuenta_ahorro_pesos(self,monto):
         caja_ahorro_pesos = CuentaDet(10000,150000,monto,0.01*monto,0)
         return caja_ahorro_pesos
-
     
