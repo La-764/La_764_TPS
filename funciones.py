@@ -14,7 +14,7 @@ class razon_compra_dolar(Razon):
             return 'Posee una cuenta que no puede comprar dolares'
         
         if self.transaccion.monto > self.transaccion.saldoEnCuenta:
-            return 'No dispone de saldo suficiente para la compra de dolares'
+            return 'No dispone de saldo suficiente para la compra de dólares'
 
 class razon_retiro_efectivo(Razon):
     def resolver(self):
@@ -33,12 +33,12 @@ class razon_alta_chequera(Razon):
         else:
             max = self.cliente.max_chequera()
             if ( max <= self.transaccion.totalChequerasActualmente):
-                return 'Se supera la maxima cantidad de chequeras dispuesta para su tipo de cuenta'
+                return 'Se supera la máxima cantidad de chequeras dispuesta para su tipo de cuenta'
 
 class razon_alta_tarjeta_credito(Razon):
     def resolver(self):
         if self.cliente.puede_crear_tarjeta_credito() == False:
-            return 'El cliente no puede crear tarjeta de credito'
+            return 'El cliente no puede crear tarjeta de crédito'
         else:
             cantidad_disponible = self.cliente.max_tarjeta_credito()
             if ( cantidad_disponible <= self.transaccion.totalTarjetasDeCreditoActualmente):
@@ -64,7 +64,7 @@ class razon_transferencia_enviada(Razon):
                 else:
                     return 'Estás intentando transferir más plata de lo disponible actualmente'
             else:
-                return f'La transferencia a realizar supera tu limite de extracción diario'
+                return f'La transferencia a realizar supera tu límite de extracción diario'
         else: 
             if costo_trans < self.caja_ahorro_pesos.limite_extraccion_diario:
                 if self.transaccion.saldoEnCuenta > costo_trans:
@@ -73,4 +73,4 @@ class razon_transferencia_enviada(Razon):
                     if (self.transaccion.saldoEnCuenta - costo_trans < -1*(self.cuenta_corriente.saldo_descubierto_disponible)):
                         return f'El descubierto definido para su tipo de cuenta no puede cubrir la transferencia'
             else:
-                return f'La transferencia superan los que es tu limite de extracción diario'
+                return f'La transferencia superan los que es tu límite de extracción diario'
