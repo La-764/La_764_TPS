@@ -10,3 +10,5 @@ class TransaccionesDet:
         self.saldoEnCuenta=data['saldoEnCuenta']
         self.totalTarjetasDeCreditoActualmente=data['totalTarjetasDeCreditoActualmente']
         self.totalChequerasActualmente=data['totalChequerasActualmente']
+    def __str__(self):
+        return f"{self.fecha} {self.tipo}, {self.estado}, {self.monto}"

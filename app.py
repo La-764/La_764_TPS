@@ -2,6 +2,8 @@ from event_validation import *
 from Clases import *
 from funciones import *
 from transacciones import TransaccionesDet
+import datos_output
+import csv
 
 def concatPath(nombreJSON):
     directory = 'test_event/'
@@ -10,6 +12,7 @@ def concatPath(nombreJSON):
 def main():
     rechazo = []
     nombreJSON = input("Ingrese el nombre del archivo: ")
+    nombreHTML= input("Ingrese el nombre del archivo de salida HTML: ")
     tps = Evento()
     nombreJSON=concatPath(nombreJSON)
     tps.leerJSON(nombreJSON)
@@ -18,16 +21,25 @@ def main():
         if t.estado == "RECHAZADA":
             match t.tipo.lower():
                 case 'transferencia_enviada':
-                    print(razon_transferencia_enviada(t,tps).resolver()) #en vez de print va return para mandar los datos a una variable
+                    razon=(razon_transferencia_enviada(t,tps).resolver())
+                    rechazo.append(razon)
                 case 'transferencia_recibida':
-                    print(razon_transferencia_recibida(t,tps).resolver())
+                   razon=(razon_transferencia_recibida(t,tps).resolver())
+                   rechazo.append(razon)
                 case 'alta_tarjeta_credito':
-                    print(razon_alta_tarjeta_credito(t,tps).resolver())
+                    razon=(razon_alta_tarjeta_credito(t,tps).resolver())
+                    rechazo.append(razon)
                 case 'alta_chequera':
-                    print(razon_alta_chequera(t,tps).resolver())
+                    razon=(razon_alta_chequera(t,tps).resolver())
+                    rechazo.append(razon)
                 case 'compra_dolar':
-                    print(razon_compra_dolar(t,tps).resolver())
+                    razon=(razon_compra_dolar(t,tps).resolver())
+                    rechazo.append(razon)
                 case'retiro_efectivo_cajero_automatico':
-                    print(razon_retiro_efectivo(t,tps).resolver())
-    
+                    razon=(razon_retiro_efectivo(t,tps).resolver())
+                    rechazo.append(razon)
+        else:
+            razon=(aceptada(t,tps).resolver())
+            rechazo.append(razon)
+    print(rechazo)    
 main()

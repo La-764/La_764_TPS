@@ -4,6 +4,9 @@ from event_validation import *
 from razon_de_rechazo import Razon
 from transacciones import TransaccionesDet
 
+class aceptada(Razon):
+    def resolver(self):
+        return "Aceptada"
 
 class razon_compra_dolar(Razon):
     def resolver(self):
